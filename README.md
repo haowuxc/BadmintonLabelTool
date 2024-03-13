@@ -11,6 +11,7 @@ Continue label with existed csv file
 Mouse Event
 - left click: label the center of ball (you can click many times for single frame, only the last position is keeped)
 - middle click: cancel label of current frame 
+
 Keyboard Event
 - e: exit program
 - s: save current label to a csv file
