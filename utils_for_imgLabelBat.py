@@ -266,32 +266,37 @@ def save_info(info, video_path):
 
 def load_info(csv_path):
     with open(csv_path, 'r') as file:
-        lines = file.readlines()
-        n_frames = len(lines) - 1
+        csv_reader = csv.reader(file)
+
+        header = next(csv_reader)
+        n_point = (len(header) - 2)//2
+        n_frames = sum(1 for _ in csv_reader)
+
         info = {
-            idx:{
-            'Frame': idx,
-            'Visibility': 0,
-            'X0': -1,
-            'X1': -1,
-            'X2': -1,
-            'Y0': -1,
-            'Y1': -1,
-            'Y2': -1
+            idx: {
+                'Frame': idx,
+                'Visibility': 0,
+                **{f'X{i}': -1 for i in range(n_point)},
+                **{f'Y{i}': -1 for i in range(n_point)}
             } for idx in range(n_frames)
         }
 
-        for line in lines[1:]:
-            frame, Visibility, x0, y0, x1, y1, x2, y2 = line.split(',')
-            frame = int(frame)
-            info[frame]['Frame'] = frame
-            info[frame]['Visibility'] = int(Visibility)
-            info[frame]['X0'] = int(x0)
-            info[frame]['Y0'] = int(y0)
-            info[frame]['X1'] = int(x1)
-            info[frame]['Y1'] = int(y1)
-            info[frame]['X2'] = int(x2)
-            info[frame]['Y2'] = int(y2)
+        info['n_point'] = n_point
+        info['n_frames'] = n_frames
+        
+
+        file.seek(0)
+        csv_reader = csv.reader(file)
+        next(csv_reader)
+
+        for row in csv_reader:
+            frame_idx = int(row[0])
+            visibility = int(row[1])
+            info[frame_idx]['Visibility'] = visibility
+            for i in range(n_point):
+                info[frame_idx][f'X{i}'] = int(row[2*i+2])
+                info[frame_idx][f'Y{i}'] = int(row[2*i+3])
+
 
     return info
 

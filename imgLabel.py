@@ -74,7 +74,7 @@ def ball_label(event, x, y, flags, param):
         info[frame_no]['Y'] = y
         info[frame_no]['Visibility'] = 1
 
-    elif event == cv2.EVENT_MBUTTONDOWN:
+    elif event == cv2.EVENT_MBUTTONDOWN or event == cv2.EVENT_RBUTTONDOWN:
         info[frame_no]['X'] = -1
         info[frame_no]['Y'] = -1
         info[frame_no]['Visibility'] = 0

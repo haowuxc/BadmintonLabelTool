@@ -45,8 +45,8 @@ if load_csv:
                 **{f'Y{i}': -1 for i in range(n_point)}
             } for idx in range(n_frames)
         }
-        info['n_point'] = n_point
-        info['n_frames'] = n_frames
+        assert info['n_point'] == n_point
+        assert info['n_frames'] == n_frames
 
     else:
         print("Load labeled dictionary successfully.")
