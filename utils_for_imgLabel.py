@@ -283,13 +283,18 @@ def load_info(csv_path):
 
     return info
 
-def show_image(image, frame_no, x, y):
+def show_image(image, frame_no, x, y, info):
     h, w, _ = image.shape
     if x != -1 and y != -1:
         x_pos = int(x)
         y_pos = int(y)
         cv2.circle(image, (x_pos, y_pos), 5, (0, 0, 255), -1)
     text = "Frame: {}".format(frame_no)
+    if info[frame_no]['Visibility'] == 1:
+        text += ', labeled'
+    else:
+        text += ', to lable'
+
     cv2.putText(image, text, (30, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 3, cv2.LINE_AA)
     return image
 
@@ -297,5 +302,5 @@ def go2frame(cap, frame_no, info):
     x, y = info[frame_no]['X'], info[frame_no]['Y']
     cap.set(1, frame_no)
     ret, image = cap.read()
-    image = show_image(image, frame_no, x, y)
+    image = show_image(image, frame_no, x, y, info)
     return image

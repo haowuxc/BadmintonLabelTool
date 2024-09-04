@@ -87,7 +87,7 @@ def ball_label(event, x, y, flags, param):
 saved_success = False
 frame_no = 0
 _, image = cap.read()
-show_image(image, 0, info[0]['X'], info[0]['Y'])
+show_image(image, 0, info[0]['X'], info[0]['Y'], info)
 # breakpoint()
 while True:
     leave = 'y'

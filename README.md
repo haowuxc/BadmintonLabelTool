@@ -21,6 +21,9 @@ python imgLabelBat.py --label_video_path VIDEO_PATH  --csv_path LABELED_CSV_PATH
 ```
 
 ## How to label
+Status
+- The blue text at the top left displays the current frame number and indicates whether the frame is labeled ('Labeled') or needs labeling ('To Label').
+
 Mouse Event
 - left click: label the center of ball (you can click many times for single frame, only the last position is keeped)
 - middle/right click: cancel label of current frame 
