@@ -116,6 +116,10 @@ while True:
             cv2.destroyAllWindows()
             print("Exit label program")
             sys.exit(1)
+    elif key == ord('x'):
+        info[frame_no]['X'] = -1
+        info[frame_no]['Y'] = -1
+        info[frame_no]['Visibility'] = 0
 
     elif key == ord('s'):
         saved_success = save_info(info, video_path)

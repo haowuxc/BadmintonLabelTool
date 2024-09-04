@@ -26,6 +26,7 @@ Mouse Event
 - middle/right click: cancel label of current frame 
 
 Keyboard Event
+- x: cancel label of current frame
 - e: exit program
 - s: save current label to a csv file
 - o: go to next point (useful in racket labeling)
