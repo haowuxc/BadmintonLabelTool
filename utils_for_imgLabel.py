@@ -285,6 +285,7 @@ def load_info(csv_path):
 
 def show_image(image, frame_no, x, y, info):
     h, w, _ = image.shape
+
     if x != -1 and y != -1:
         x_pos = int(x)
         y_pos = int(y)

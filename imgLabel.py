@@ -5,6 +5,7 @@ from parser1 import parser
 from utils_for_imgLabel import save_info, load_info, go2frame, show_image
 
 args = parser.parse_args()
+# breakpoint()
 video_path = args.label_video_path
 if not os.path.isfile(video_path) or not video_path.endswith('.mp4'):
     print("Not a valid video path! Please modify path in parser.py --label_video_path")
@@ -27,6 +28,16 @@ cap = cv2.VideoCapture(video_path)
 fps = int(cap.get(cv2.CAP_PROP_FPS))
 n_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
+for frame_id in range(n_frames):
+    print(f'checking frame {n_frames - frame_id - 1}...')
+    cap.set(1, n_frames - frame_id - 1)
+    ret, image = cap.read()
+    if image is None:
+        continue
+    else:
+        n_frames = n_frames - frame_id
+        break
+
 # breakpoint()
 if load_csv:
     info = load_info(csv_path)
@@ -36,6 +47,8 @@ if load_csv:
         for i in range(n_frames, len(info)):
             del info[i]
         assert len(info) == n_frames
+    elif len(info) < n_frames:
+        n_frames = len(info)
         
         # info = {
         #     idx:{
@@ -86,6 +99,7 @@ def ball_label(event, x, y, flags, param):
 
 saved_success = False
 frame_no = 0
+cap.set(1, frame_no)
 _, image = cap.read()
 show_image(image, 0, info[0]['X'], info[0]['Y'], info)
 # breakpoint()
