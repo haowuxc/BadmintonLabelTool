@@ -1,3 +1,10 @@
+# LabelVid
+## Installation
+```
+git clone https://github.com/haowuxc/labelvid.git
+cd labelvid
+pip install -e .
+```
 ## How to run
 
 
