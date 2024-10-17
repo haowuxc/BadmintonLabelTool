@@ -1,12 +1,14 @@
 ## How to run
+
+
 For new video
 
 ``` 
 # label samll ball like tennis, badminton, etc.
-python pointlabel.py --video_path VIDEO_PATH 
+labelvid boxlabel -vp VIDEO_PATH
 
 # label large ball like basketball, volleyball, etc.
-python boxlabel.py --video_path VIDEO_PATH 
+labelvid pointlabel -vp VIDEO_PATH
 
 # label badminton racket
 python imgLabelBat.py --label_video_path VIDEO_PATH
@@ -19,10 +21,10 @@ Continue label with existed csv file
 
 ```
 # label samll ball like tennis, badminton, etc.
-python pointlabel.py --video_path VIDEO_PATH --annotation_path LABELED_CSV_PATH
+labelvid boxlabel -vp VIDEO_PATH -ap LABELED_CSV_PATH
 
 # label large ball like basketball, volleyball, etc.
-python boxlabel.py --video_path VIDEO_PATH --annotation_path LABELED_CSV_PATH
+labelvid boxlabel -vp VIDEO_PATH -ap LABELED_CSV_PATH
 
 # label badminton racket
 python imgLabelBat.py --label_video_path VIDEO_PATH  --csv_path LABELED_CSV_PATH
